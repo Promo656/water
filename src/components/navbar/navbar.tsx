@@ -31,7 +31,9 @@ const useStyles = makeStyles<Theme, PropsType>((theme) => ({
             borderRight: "1px solid #DA442B"
         },
         linkText: {
-            marginRight: 10
+            fontFamily:"Inglobal",
+            marginRight: 10,
+            fontSize: 24
         }
     }),
 );

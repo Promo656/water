@@ -23,6 +23,11 @@ const useStyles = makeStyles((theme) => ({
             width: 290,
             height: 324,
             marginBottom: 60
+        },
+        title: {
+            display: "block",
+            fontFamily: "Inglobal",
+            fontSize: 36
         }
     }),
 );
@@ -34,7 +39,7 @@ function WelcomePart() {
             {/*<img className={classes.mainImage} src={mainImage} alt=""/>*/}
             <Navbar margin={"0 0 140px 0"}/>
             <Logo className={classes.logo}/>
-            <span>Вода Севере - Идеальный Баланс</span>
+            <span className={classes.title}>Вода Севера - Идеальный Баланс</span>
             <StyledButton title="Подробнее" btnColor="#075AB4"/>
         </div>
     );

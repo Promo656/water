@@ -19,6 +19,7 @@ const useStyles = makeStyles<Theme, StyledButtonPropsType>((theme: Theme) =>
             background: props => props.btnColor,
             borderRadius: 9,
             color: "#ffffff",
+            fontFamily: "Yrsa",
             '&:hover': {
                 background: "#075AB4",
             }
