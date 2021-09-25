@@ -87,7 +87,7 @@ const useStyles = makeStyles((theme) => ({
             textAlign: "center",
             fontFamily: "Inglobal",
             fontSize: 36,
-            marginBottom: 100
+            marginBottom: 150
         },
         underLine: {
             borderBottom: "2px solid #DA442B"

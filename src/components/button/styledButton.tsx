@@ -1,7 +1,7 @@
 import React from 'react';
 import {Button, createStyles, makeStyles, Theme} from "@material-ui/core";
 
-type ColorProps = "#075AB4" | "DA442B"
+type ColorProps = "#075AB4" | "#DA442B"
 
 export type StyledButtonPropsType = {
     title: string
@@ -10,7 +10,7 @@ export type StyledButtonPropsType = {
     btnColor: ColorProps
 }
 
-const useStyles = makeStyles<Theme, StyledButtonPropsType>((theme: Theme) =>
+const useStyles = makeStyles<Theme, StyledButtonPropsType>(() =>
     createStyles({
         button: {
             fontSize: 18,
@@ -34,6 +34,7 @@ function StyledButton(props: StyledButtonPropsType) {
     const classes = useStyles(props);
     return (
         <Button
+            type="submit"
             className={classes.button}
             classes={{root: classes.reRoot}}
             onClick={props.onClick}
