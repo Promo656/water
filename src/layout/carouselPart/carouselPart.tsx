@@ -28,12 +28,13 @@ const useStyles = makeStyles((theme) => ({
         rightInfo: {
             display: "flex",
             flexDirection: "column",
-            alignItems: "flex-end",
+            alignItems: "flex-start",
             marginLeft: 50
         },
         informationText: {
             fontFamily: "Inglobal",
-            fontSize: 18
+            fontSize: 18,
+            letterSpacing: 2
         },
         leftLogo: {
             marginBottom: 50

@@ -1,17 +1,22 @@
 import React from 'react';
 import './App.css';
 import {Route, Switch} from "react-router-dom";
-import Main from "./pages/Main";
-import About from "./pages/About";
-import Production from "./pages/Production";
+import Main from "./pages/main";
+import About from "./pages/about";
+import Production from "./pages/production";
+
 
 function App() {
     return (
-        <Switch>
-            <Route path="/" component={Main}/>
-            <Route exact path="/about" component={About}/>
-            <Route exact path="/production" component={Production}/>
-        </Switch>
+        <div>
+            {/*<Navbar margin={"0 0 140px 0"}/>*/}
+            <Switch>
+                <Route exact path="/" component={Main}/>
+                <Route exact path="/about" component={About}/>
+                <Route exact path="/production" component={Production}/>
+            </Switch>
+        </div>
+
     );
 }
 

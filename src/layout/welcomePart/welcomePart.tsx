@@ -4,7 +4,7 @@ import {makeStyles} from "@material-ui/core";
 import mainImage from "../../assets/photo/logo1.png"
 import {ReactComponent as Logo} from "../../assets/logo/logo1.svg"
 import Navbar from "../../components/navbar/navbar";
-import StyledButton from "../../components/button/StyledButton";
+import StyledButton from "../../components/button/styledButton";
 
 const useStyles = makeStyles((theme) => ({
         welcomePart: {
