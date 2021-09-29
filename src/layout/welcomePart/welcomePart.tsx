@@ -1,22 +1,24 @@
 import React from 'react';
 import {makeStyles} from "@material-ui/core";
-
 import mainImage from "../../assets/photo/logo1.png"
 import {ReactComponent as Logo} from "../../assets/logo/logo1.svg"
-import Navbar from "../../components/navbar/navbar";
 import StyledButton from "../../components/button/styledButton";
+import useMediaQuery from "@mui/material/useMediaQuery";
+import classNames from "classnames";
 
 const useStyles = makeStyles((theme) => ({
         welcomePart: {
-            paddingTop: 60,
-            paddingLeft: 304,
+            position: "relative",
             height: "100vh",
-            backgroundImage: `url(${mainImage})`,
             backgroundSize: "contain",
             backgroundRepeat: "no-repeat"
         },
-        mainImage: {
+        image: {
             width: "100%",
+            height: "100%",
+            objectFit: "cover",
+            position: "absolute",
+            zIndex: -1
         },
         logo: {
             display: "block",
@@ -25,23 +27,52 @@ const useStyles = makeStyles((theme) => ({
             marginBottom: 60
         },
         title: {
-            display: "block",
-            fontFamily: "Inglobal",
-            fontSize: 36
+            fontFamily: "Inglobal"
+        },
+        title_mobile: {
+            fontSize: 14,
+            marginBottom: 20
+        },
+        title_web: {
+            fontSize: 36,
+            marginBottom: 40
+        },
+
+        infoWrap_web: {
+            paddingTop: 275,
+            paddingLeft: 304
+        },
+        infoWrap_mobile: {
+            paddingTop: 100,
+            paddingLeft: 20
         }
     }),
 );
 
 function WelcomePart() {
     const classes = useStyles()
+    const mimMatches = useMediaQuery('(min-width:376px)');
+    const maxMatches = useMediaQuery('(max-width:376px)');
+    const title = classNames(classes.title, {
+        [classes.title_mobile]: maxMatches,
+        [classes.title_web]: mimMatches,
+    })
+    const infoWrap = classNames({
+        [classes.infoWrap_mobile]: maxMatches,
+        [classes.infoWrap_web]: mimMatches,
+    })
     return (
-        <div className={classes.welcomePart}>
-            {/*<img className={classes.mainImage} src={mainImage} alt=""/>*/}
-            <Navbar margin={"0 0 140px 0"}/>
-            <Logo className={classes.logo}/>
-            <span className={classes.title}>Вода Севера - Идеальный Баланс</span>
-            <StyledButton title="Подробнее" btnColor="#075AB4"/>
-        </div>
+        <>
+            <img className={classes.image} src={mainImage} alt=""/>
+            <div className={classes.welcomePart}>
+                <div className={infoWrap}>
+                    {mimMatches && <Logo className={classes.logo}/>}
+                    <div className={title}>Вода Севера - Идеальный Баланс</div>
+                    <StyledButton title="Подробнее" btnColor="#075AB4" matches={mimMatches}/>
+                </div>
+            </div>
+        </>
+
     );
 }
 

@@ -8,13 +8,13 @@ import MessagePart from "../layout/messagePart/messagePart";
 function Production() {
 
     return (
-        <div>
+        <>
             <ForestPart/>
             <TechnologicalPart/>
             <ContainerPart/>
             <MessagePart/>
             <Footer/>
-        </div>
+        </>
     );
 }
 

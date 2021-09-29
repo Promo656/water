@@ -3,11 +3,15 @@ import {makeStyles, Theme} from "@material-ui/core";
 import {NavLink} from 'react-router-dom';
 
 type PropsType = {
-    margin: string
+    margin?: string
 }
 
 const useStyles = makeStyles<Theme, PropsType>((theme) => ({
         navbar: {
+            zIndex: 100,
+            position: "absolute",
+            top: "5%",
+            left: "20%",
             margin: props => props.margin,
             width: 586,
             height: 75,
@@ -31,7 +35,7 @@ const useStyles = makeStyles<Theme, PropsType>((theme) => ({
             borderRight: "1px solid #DA442B"
         },
         linkText: {
-            fontFamily:"Inglobal",
+            fontFamily: "Inglobal",
             marginRight: 10,
             fontSize: 24
         }

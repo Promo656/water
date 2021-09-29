@@ -4,12 +4,14 @@ import {Route, Switch} from "react-router-dom";
 import Main from "./pages/main";
 import About from "./pages/about";
 import Production from "./pages/production";
-
+import Navbar from "./components/navbar/navbar";
+import useMediaQuery from '@mui/material/useMediaQuery';
 
 function App() {
+    const matches = useMediaQuery('(min-width:376px)');
     return (
         <div>
-            {/*<Navbar margin={"0 0 140px 0"}/>*/}
+            {matches && <Navbar/>}
             <Switch>
                 <Route exact path="/" component={Main}/>
                 <Route exact path="/about" component={About}/>

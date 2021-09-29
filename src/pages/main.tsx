@@ -8,13 +8,13 @@ import Footer from "../layout/footer/footer";
 
 function Main() {
     return (
-        <div>
+        <>
             <WelcomePart/>
-            <CarouselPart/>
+            {/*  <CarouselPart/>*/}
             <HarmfulPart/>
             <BuyPart/>
-            <Footer/>
-        </div>
+            {/*  <Footer/>*/}
+        </>
     );
 }
 
