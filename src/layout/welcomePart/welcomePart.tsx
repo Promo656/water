@@ -1,6 +1,7 @@
 import React from 'react';
 import {makeStyles} from "@material-ui/core";
 import mainImage from "../../assets/photo/logo1.png"
+import mainImage_mobile from "../../assets/photo/logo1_mobile.png"
 import {ReactComponent as Logo} from "../../assets/logo/logo1.svg"
 import StyledButton from "../../components/button/styledButton";
 import useMediaQuery from "@mui/material/useMediaQuery";
@@ -51,24 +52,24 @@ const useStyles = makeStyles((theme) => ({
 
 function WelcomePart() {
     const classes = useStyles()
-    const mimMatches = useMediaQuery('(min-width:376px)');
+    const minMatches = useMediaQuery('(min-width:376px)');
     const maxMatches = useMediaQuery('(max-width:376px)');
     const title = classNames(classes.title, {
         [classes.title_mobile]: maxMatches,
-        [classes.title_web]: mimMatches,
+        [classes.title_web]: minMatches,
     })
     const infoWrap = classNames({
         [classes.infoWrap_mobile]: maxMatches,
-        [classes.infoWrap_web]: mimMatches,
+        [classes.infoWrap_web]: minMatches,
     })
     return (
         <>
-            <img className={classes.image} src={mainImage} alt=""/>
+            <img className={classes.image} src={minMatches ? mainImage : mainImage_mobile} alt=""/>
             <div className={classes.welcomePart}>
                 <div className={infoWrap}>
-                    {mimMatches && <Logo className={classes.logo}/>}
+                    {minMatches && <Logo className={classes.logo}/>}
                     <div className={title}>Вода Севера - Идеальный Баланс</div>
-                    <StyledButton title="Подробнее" btnColor="#075AB4" matches={mimMatches}/>
+                    <StyledButton title="Подробнее" btnColor="#075AB4" matches={minMatches}/>
                 </div>
             </div>
         </>

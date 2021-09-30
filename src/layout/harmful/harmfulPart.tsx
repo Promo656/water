@@ -13,6 +13,12 @@ const useStyles = makeStyles((theme) => ({
             alignItems: "center",
             height: "100%"
         },
+        harmful_mobile: {
+            marginBottom: 73
+        },
+        harmful_web: {
+            marginBottom: 163
+        },
         title: {
             fontFamily: "Inglobal",
             letterSpacing: 2,
@@ -52,13 +58,13 @@ const useStyles = makeStyles((theme) => ({
         },
         arrowIcon_mobile: {
             marginBottom: 10,
-            width:16,
-            height:45
+            width: 16,
+            height: 45
         },
         arrowIcon_web: {
             marginBottom: 100,
-            width:38,
-            height:158
+            width: 38,
+            height: 158
         },
         xArea: {
             position: "relative",
@@ -111,33 +117,37 @@ const xItems = [
 
 function HarmfulPart() {
     const classes = useStyles()
-    const mimMatches = useMediaQuery('(min-width:376px)');
+    const minMatches = useMediaQuery('(min-width:376px)');
     const maxMatches = useMediaQuery('(max-width:376px)');
+    const harmful = classNames(classes.harmful, {
+        [classes.harmful_mobile]: maxMatches,
+        [classes.harmful_web]: minMatches,
+    })
     const title = classNames(classes.title, {
         [classes.title_mobile]: maxMatches,
-        [classes.title_web]: mimMatches,
+        [classes.title_web]: minMatches,
     })
     const subTitle = classNames(classes.subTitle, {
         [classes.title_mobile]: maxMatches,
-        [classes.title_web]: mimMatches,
+        [classes.title_web]: minMatches,
     })
     const arrowIcon = classNames({
         [classes.arrowIcon_mobile]: maxMatches,
-        [classes.arrowIcon_web]: mimMatches,
+        [classes.arrowIcon_web]: minMatches,
     })
     const xArea = classNames(classes.xArea, {
         [classes.xArea_mobile]: maxMatches
     })
     const xLogo = classNames(classes.xLogo, {
         [classes.xLogo_mobile]: maxMatches,
-        [classes.xLogo_web]: mimMatches,
+        [classes.xLogo_web]: minMatches,
     })
     const xTitle = classNames(classes.xTitle, {
         [classes.xTitle_mobile]: maxMatches,
-        [classes.xTitle_web]: mimMatches,
+        [classes.xTitle_web]: minMatches,
     })
     return (
-        <div className={classes.harmful}>
+        <div className={harmful}>
             <span className={title}>
                 Главным преимуществом употребления талой <br/>
                 воды становится ее <span className={classes.underLine}>чистота.</span>

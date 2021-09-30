@@ -1,6 +1,8 @@
 import React from 'react';
 import {makeStyles, Button} from "@material-ui/core";
 import {ReactComponent as FooterIcon} from "../../assets/logo/footerIcon.svg";
+import useMediaQuery from "@mui/material/useMediaQuery";
+import classNames from "classnames";
 
 const useStyles = makeStyles((theme) => ({
         footer: {
@@ -14,6 +16,9 @@ const useStyles = makeStyles((theme) => ({
             display: "flex",
             alignItems: "center",
             justifyContent: "center"
+        },
+        footerWrap_mobile: {
+            flexDirection: "column"
         },
         footerIcon: {
             marginRight: 30
@@ -57,10 +62,15 @@ const useStyles = makeStyles((theme) => ({
 
 function Footer() {
     const classes = useStyles()
+    const minMatches = useMediaQuery('(min-width:376px)');
+    const maxMatches = useMediaQuery('(max-width:376px)');
+    const footerWrap = classNames(classes.footerWrap, {
+        [classes.footerWrap_mobile]: maxMatches
+    })
     return (
         <div className={classes.footer}>
-            <div className={classes.footerWrap}>
-                <FooterIcon className={classes.footerIcon}/>
+            <div className={footerWrap}>
+                {minMatches && <FooterIcon className={classes.footerIcon}/>}
                 <div className={classes.infoArea}>
                     <span className={classes.text} style={{marginBottom: 17}}>Email: 1@69paralel.ru</span>
                     <span className={classes.text} style={{marginBottom: 17}}>Телефон: +7(8152)65-25-50</span>
@@ -71,14 +81,12 @@ function Footer() {
                     <span className={classes.text} style={{marginBottom: 20}}>Партнеры</span>
                     <span className={classes.text}>Производство</span>
                 </div>
-                <div>
-                    <Button
-                        className={classes.button}
-                        classes={{root: classes.reRoot}}
-                    >
-                        Заказать звонок
-                    </Button>
-                </div>
+                <Button
+                    className={classes.button}
+                    classes={{root: classes.reRoot}}
+                >
+                    Заказать звонок
+                </Button>
             </div>
         </div>
     );

@@ -25,7 +25,7 @@ const useStyles = makeStyles<Theme, StyledButtonPropsType>(() =>
             color: "#ffffff",
             // fontFamily: "Yrsa",
             '&:hover': {
-                background: "#075AB4",
+                background: props => props.btnColor === "#075AB4" ? "#075AB4" : "#DA442B"
             }
         },
         reRoot: {
