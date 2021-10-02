@@ -1,147 +1,104 @@
-import * as React from 'react';
-import {
-    alpha,
-    Box,
-    FormControl,
-    InputBase, InputLabel,
-    OutlinedInputProps,
-    styled,
-    TextField,
-    TextFieldProps
-} from "@material-ui/core";
+import React, {ChangeEvent, useState} from 'react';
+import {createStyles, makeStyles, Theme} from '@material-ui/core/styles';
+import {Button} from "@material-ui/core";
+import {ReactComponent as CloseIcon} from "../../assets/logo/closeIcon.svg";
+import classNames from "classnames";
+import {FormControl, FormHelperText, InputAdornment, OutlinedInput} from "@mui/material";
 
+export type SearchInputPropsType = {}
 
-const CssTextField = styled(TextField)({
-    '& label.Mui-focused': {
-        color: 'green',
-    },
-    '& .MuiInput-underline:after': {
-        borderBottomColor: 'green',
-    },
-    '& .MuiOutlinedInput-root': {
-        '& fieldset': {
-            borderColor: 'red',
-        },
-        '&:hover fieldset': {
-            borderColor: 'yellow',
-        },
-        '&.Mui-focused fieldset': {
-            borderColor: 'green',
-        },
-    },
-});
+const useStyles = makeStyles<Theme, SearchInputPropsType>((theme: Theme) =>
+    createStyles({
+        /*   wrap: {
+               // position: "relative",
+               width: 275,
+               height: 61,
+               backgroundColor: "white",
+               borderRadius: 12,
+               border: "1px solid white",
+               display: "flex",
+               alignItems: "center",
+           },
+           activeInput: {
+               border: "1px solid #DA442B",
+           },
+           input: {
 
-const BootstrapInput = styled(InputBase)(({theme}) => ({
-    'label + &': {
-        marginTop: theme.spacing(3),
-    },
-    '& .MuiInputBase-input': {
-        borderRadius: 4,
-        position: 'relative',
-        backgroundColor: '#fcfcfb',
-        border: '1px solid #ced4da',
-        fontSize: 16,
-        width: 'auto',
-        padding: '10px 12px',
-        transition: theme.transitions.create([
-            'border-color',
-            'background-color',
-            'box-shadow',
-        ]),
-        // Use the system font instead of the default Roboto font.
-        fontFamily: [
-            '-apple-system',
-            'BlinkMacSystemFont',
-            '"Segoe UI"',
-            'Roboto',
-            '"Helvetica Neue"',
-            'Arial',
-            'sans-serif',
-            '"Apple Color Emoji"',
-            '"Segoe UI Emoji"',
-            '"Segoe UI Symbol"',
-        ].join(','),
-        '&:focus': {
-            boxShadow: `${alpha(theme.palette.primary.main, 0.25)} 0 0 0 0.2rem`,
-            borderColor: theme.palette.primary.main,
-        },
-    },
-}));
+               boxSizing: "border-box",
+               borderWidth: 0,
+               width: 240,
+               borderRadius: 12,
+               padding: "20px",
+               fontFamily: "Inglobal",
+               fontSize: 18,
+               '&:focus': {
+                   outline: "none",
+                   // border: "1px solid #DA442B"
+               }
+           },
+           button: {
+               // position: "absolute",
+               // right: "10px"
+           },
+           reButton: {
+               padding: 0,
+               minWidth: 20
+           }*/
+        reInput: {
+            borderRadius: 12
+        }
 
-const RedditTextField = styled((props: TextFieldProps) => (
-    <TextField
-        InputProps={{disableUnderline: true} as Partial<OutlinedInputProps>}
-        {...props}
-    />
-))(({theme}) => ({
-    '& .MuiFilledInput-root': {
-        border: '1px solid #e2e2e1',
-        overflow: 'hidden',
-        borderRadius: 4,
-        backgroundColor: '#2b2b2b',
-        transition: theme.transitions.create([
-            'border-color',
-            'background-color',
-            'box-shadow',
-        ]),
-        '&:hover': {
-            backgroundColor: 'transparent',
-        },
-        '&.Mui-focused': {
-            backgroundColor: 'transparent',
-            boxShadow: `${alpha(theme.palette.primary.main, 0.25)} 0 0 0 2px`,
-            borderColor: theme.palette.primary.main,
-        },
-    },
-}));
+    }),
+);
 
-const ValidationTextField = styled(TextField)({
-    '& input:valid + fieldset': {
-        borderColor: 'green',
-        borderWidth: 2,
-    },
-    '& input:invalid + fieldset': {
-        borderColor: 'red',
-        borderWidth: 2,
-    },
-    '& input:valid:focus + fieldset': {
-        borderLeftWidth: 6,
-        padding: '4px !important', // override inline-style
-    },
-});
+export function StyledInputs(props: SearchInputPropsType) {
+    const classes = useStyles(props);
+    const [inputText, setInputText] = useState("")
 
-export default function StyledInputs() {
+    const onChangeInputTextHandler = (e: ChangeEvent<HTMLInputElement>) => {
+        setInputText(e.target.value)
+    }
+
+    const onClearInputTextHandler = () => {
+        setInputText("")
+    }
+
     return (
-        <Box
-            component="form"
+        /*  <div className={wrap}>
 
-            sx={{
-                display: 'grid',
-                gridTemplateColumns: {sm: '1fr 1fr'},
+              <input
+                  className={classes.input}
+                  type="text"
+                  value={inputText}
+                  onChange={onChangeInputTextHandler}
+              />
 
-            }}
-        >
-            <FormControl variant="standard">
-                <InputLabel shrink htmlFor="bootstrap-input">
-                    Bootstrap
-                </InputLabel>
-                <BootstrapInput defaultValue="react-bootstrap" id="bootstrap-input"/>
-            </FormControl>
-            <RedditTextField
-                label="Reddit"
-                defaultValue="react-reddit"
-                id="reddit-input"
-                variant="filled"
-                style={{marginTop: 11}}
+              {
+                  inputText !== ""
+                  && <Button
+                      className={classes.button}
+                      classes={{root: classes.reButton}}
+                      onClick={onClearInputTextHandler}
+                  >
+                      <CloseIcon/>
+                  </Button>
+              }
+          </div>*/
+        <FormControl sx={{m: 1, width: '25ch'}} variant="outlined">
+            <FormHelperText id="outlined-weight-helper-text">Weight</FormHelperText>
+            <OutlinedInput
+                className={classes.reInput}
+                id="outlined-adornment-weight"
+                value={inputText}
+                onChange={onChangeInputTextHandler}
+                endAdornment={inputText !== "" && <InputAdornment position="end"><Button
+                    className={classes.button}
+                    classes={{root: classes.reButton}}
+                    onClick={onClearInputTextHandler}
+                >
+                    <CloseIcon/>
+                </Button></InputAdornment>}
             />
-            <CssTextField label="Custom CSS" id="custom-css-outlined-input"/>
-            <ValidationTextField
-                label="CSS validation style"
-                required
-                variant="outlined"
-                defaultValue="Success"
-                id="validation-outlined-input"
-            />
-        </Box>
+        </FormControl>
     );
 }
