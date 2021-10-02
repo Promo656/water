@@ -1,6 +1,9 @@
 import React from 'react';
 import {makeStyles} from "@material-ui/core";
 import productionLogo from "../../assets/photo/logo3.png";
+import useMediaQuery from "@mui/material/useMediaQuery";
+import {Resolution} from "../../const";
+import classNames from "classnames";
 
 const useStyles = makeStyles((theme) => ({
         production: {
@@ -19,14 +22,31 @@ const useStyles = makeStyles((theme) => ({
             zIndex: -1
         },
         text: {
-            fontFamily: "Inglobal",
+            fontFamily: "Inglobal"
+        },
+        text_mobile: {
+            fontSize: 24
+        },
+        text_web: {
             fontSize: 48
         },
         wrapText: {
-            borderRadius: 14,
             backgroundColor: "#075AB4",
             color: "white",
-            fontFamily: "Inglobal",
+            fontFamily: "Inglobal"
+        },
+        wrapText_mobile: {
+            width: 238,
+            height: 41,
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "center",
+            borderRadius: 4,
+            fontSize: 18,
+            margin: "15px 25px 0 70px"
+        },
+        wrapText_web: {
+            borderRadius: 14,
             fontSize: 48,
             padding: "20px 40px"
         }
@@ -35,14 +55,28 @@ const useStyles = makeStyles((theme) => ({
 
 function ForestPart() {
     const classes = useStyles()
+    const minMatches = useMediaQuery(Resolution.min);
+    const maxMatches = useMediaQuery(Resolution.max);
+    const text = classNames(classes.text, {
+        [classes.text_mobile]: maxMatches,
+        [classes.text_web]: minMatches,
+    })
+    const wrapText = classNames(classes.wrapText, {
+        [classes.wrapText_mobile]: maxMatches,
+        [classes.wrapText_web]: minMatches,
+    })
     return (
-        <div className={classes.production}>
+        <>
             <img className={classes.image} src={productionLogo} alt=""/>
-            <div>
-                <span className={classes.text}>Можете спать спокойно - </span>
-                <span className={classes.wrapText}>мы все доставим во время.</span>
+            <div className={classes.production}>
+                <div style={{width: "100%", textAlign: "center"}}>
+                    <span className={text}>Можете спать спокойно</span>
+                    {minMatches && <span className={text}>&ensp;&mdash;&ensp;</span>}
+                    <span className={wrapText}>мы все доставим во время.</span>
+                </div>
             </div>
-        </div>
+        </>
+
     );
 }
 

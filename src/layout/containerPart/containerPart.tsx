@@ -1,6 +1,9 @@
 import React from 'react';
 import {makeStyles} from "@material-ui/core";
 import logo from "../../assets/photo/logo4.png"
+import useMediaQuery from "@mui/material/useMediaQuery";
+import {Resolution} from "../../const";
+import classNames from "classnames";
 
 const useStyles = makeStyles((theme) => ({
         container: {
@@ -16,16 +19,27 @@ const useStyles = makeStyles((theme) => ({
             zIndex: 1,
             right: "10%",
             top: "-5%",
-            width: 736,
-            height: 94,
             borderRadius: 10,
             backgroundColor: "#F0F0F3",
             fontFamily: "Inglobal",
-            fontSize: 40,
             color: "black",
             display: "flex",
             alignItems: "center",
             justifyContent: "center"
+        },
+        title_mobile: {
+            right: "10%",
+            top: "-5%",
+            width: "100%",
+            height: 62,
+            fontSize: 18
+        },
+        title_web: {
+            right: "10%",
+            top: "-5%",
+            width: 736,
+            height: 94,
+            fontSize: 40
         },
         logo: {
             width: 390,
@@ -64,9 +78,15 @@ const useStyles = makeStyles((theme) => ({
 
 function ContainerPart() {
     const classes = useStyles()
+    const minMatches = useMediaQuery(Resolution.min);
+    const maxMatches = useMediaQuery(Resolution.max);
+      const title = classNames(classes.title, {
+          [classes.title_mobile]: maxMatches,
+          [classes.title_web]: minMatches,
+      })
     return (
         <div style={{position: "relative"}}>
-            <div className={classes.title}>
+            <div className={title}>
                 Убедитесь в уникальности состава
             </div>
             <div className={classes.container}>

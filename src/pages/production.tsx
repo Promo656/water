@@ -12,7 +12,7 @@ function Production() {
             <ForestPart/>
             <TechnologicalPart/>
             <ContainerPart/>
-            <MessagePart/>
+            {/*<MessagePart/>*/}
             <Footer/>
         </>
     );
