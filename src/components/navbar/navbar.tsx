@@ -2,17 +2,12 @@ import React from 'react';
 import {makeStyles, Theme} from "@material-ui/core";
 import {NavLink} from 'react-router-dom';
 
-type PropsType = {
-    margin?: string
-}
-
-const useStyles = makeStyles<Theme, PropsType>((theme) => ({
+const useStyles = makeStyles((theme) => ({
         navbar: {
             zIndex: 100,
             position: "absolute",
             top: "5%",
             left: "20%",
-            margin: props => props.margin,
             width: 586,
             height: 75,
             borderRadius: 20,
@@ -42,8 +37,8 @@ const useStyles = makeStyles<Theme, PropsType>((theme) => ({
     }),
 );
 
-function Navbar(props: PropsType) {
-    const classes = useStyles(props)
+function Navbar() {
+    const classes = useStyles()
     return (
         <div className={classes.navbar}>
             <NavLink exact to="/" className={classes.links} activeClassName={classes.activeLink}>
