@@ -3,6 +3,7 @@ import {makeStyles, Button} from "@material-ui/core";
 import {ReactComponent as FooterIcon} from "../../assets/logo/footerIcon.svg";
 import useMediaQuery from "@mui/material/useMediaQuery";
 import classNames from "classnames";
+import {Resolution} from "../../const";
 
 const useStyles = makeStyles((theme) => ({
         footer: {
@@ -80,8 +81,8 @@ const useStyles = makeStyles((theme) => ({
 
 function Footer() {
     const classes = useStyles()
-    const minMatches = useMediaQuery('(min-width:376px)');
-    const maxMatches = useMediaQuery('(max-width:376px)');
+    const minMatches = useMediaQuery(Resolution.min);
+    const maxMatches = useMediaQuery(Resolution.max);
     const footer = classNames(classes.footer, {
         [classes.footer_web]: minMatches
     })

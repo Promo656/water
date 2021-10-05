@@ -4,6 +4,7 @@ import {ReactComponent as ArrowDown} from "../../assets/logo/arrowDown.svg";
 import {ReactComponent as X} from "../../assets/logo/x.svg";
 import useMediaQuery from "@mui/material/useMediaQuery";
 import classNames from "classnames";
+import {Resolution} from "../../const";
 
 
 const useStyles = makeStyles((theme) => ({
@@ -117,8 +118,8 @@ const xItems = [
 
 function HarmfulPart() {
     const classes = useStyles()
-    const minMatches = useMediaQuery('(min-width:376px)');
-    const maxMatches = useMediaQuery('(max-width:376px)');
+    const minMatches = useMediaQuery(Resolution.min);
+    const maxMatches = useMediaQuery(Resolution.max);
     const harmful = classNames(classes.harmful, {
         [classes.harmful_mobile]: maxMatches,
         [classes.harmful_web]: minMatches,

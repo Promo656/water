@@ -152,7 +152,7 @@ const useStyles = makeStyles((theme) => ({
         subTitle_mobile: {
             lineHeight: "26px",
             fontSize: 14,
-            marginBottom: 40
+            marginBottom: 80
         },
         subTitle_web: {
             fontSize: 36,

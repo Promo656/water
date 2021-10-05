@@ -7,9 +7,10 @@ import Production from "./pages/production";
 import Navbar from "./components/navbar/navbar";
 import useMediaQuery from '@mui/material/useMediaQuery';
 import SimpleDialogDemo from "./components/dialog/dialog";
+import {Resolution} from "./const";
 
 function App() {
-    const matches = useMediaQuery('(min-width:376px)');
+    const matches = useMediaQuery(Resolution.min);
     return (
         <div>
             {matches ? <Navbar/> : <SimpleDialogDemo/>}

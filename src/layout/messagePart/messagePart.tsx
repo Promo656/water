@@ -102,7 +102,7 @@ function MessagePart() {
 
                 <form onSubmit={handleSubmit}>
 
-                    <StyledInputs/>
+                    <StyledInputs title="ФИО"/>
 
                     <div></div>
                     <StyledButton title="Отправить" btnColor="#DA442B"/>

@@ -3,9 +3,11 @@ import {createStyles, makeStyles, Theme} from '@material-ui/core/styles';
 import {Button} from "@material-ui/core";
 import {ReactComponent as CloseIcon} from "../../assets/logo/closeIcon.svg";
 import classNames from "classnames";
-import {FormControl, FormHelperText, InputAdornment, OutlinedInput} from "@mui/material";
+import {FormControl, FormHelperText, IconButton, InputAdornment, OutlinedInput} from "@mui/material";
 
-export type SearchInputPropsType = {}
+export type SearchInputPropsType = {
+    title: string
+}
 
 const useStyles = makeStyles<Theme, SearchInputPropsType>((theme: Theme) =>
     createStyles({
@@ -45,7 +47,20 @@ const useStyles = makeStyles<Theme, SearchInputPropsType>((theme: Theme) =>
                minWidth: 20
            }*/
         reInput: {
-            borderRadius: 12
+            borderRadius: "12px!important",
+            backgroundColor: "white!important",
+            fontFamily: "Inglobal!important",
+            fontSize: "18px!important",
+
+        },
+        reFormHelperText: {
+            fontFamily: "Inglobal!important",
+            fontSize: "18px!important",
+            color: "white!important",
+            marginLeft: "0px!important"
+        },
+        reRoot:{
+            borderColor:"#DA442B"
         }
 
     }),
@@ -85,19 +100,24 @@ export function StyledInputs(props: SearchInputPropsType) {
               }
           </div>*/
         <FormControl sx={{m: 1, width: '25ch'}} variant="outlined">
-            <FormHelperText id="outlined-weight-helper-text">Weight</FormHelperText>
+            <FormHelperText id={props.title} classes={{root: classes.reFormHelperText}}>{props.title}</FormHelperText>
             <OutlinedInput
+                classes={{notchedOutline:classes.reRoot}}
                 className={classes.reInput}
-                id="outlined-adornment-weight"
+                id={`outlined-adornment-${props.title}`}
                 value={inputText}
                 onChange={onChangeInputTextHandler}
-                endAdornment={inputText !== "" && <InputAdornment position="end"><Button
-                    className={classes.button}
-                    classes={{root: classes.reButton}}
-                    onClick={onClearInputTextHandler}
-                >
-                    <CloseIcon/>
-                </Button></InputAdornment>}
+                endAdornment={inputText !== ""
+                && <InputAdornment position="end">
+                    <IconButton
+                        size="small"
+                        className={classes.button}
+                        classes={{root: classes.reButton}}
+                        onClick={onClearInputTextHandler}
+                    >
+                        <CloseIcon/>
+                    </IconButton>
+                </InputAdornment>}
             />
         </FormControl>
     );

@@ -1,12 +1,5 @@
 import * as React from 'react';
-import Avatar from '@mui/material/Avatar';
-import List from '@mui/material/List';
-import ListItem from '@mui/material/ListItem';
-import ListItemAvatar from '@mui/material/ListItemAvatar';
-import ListItemText from '@mui/material/ListItemText';
-import DialogTitle from '@mui/material/DialogTitle';
 import Dialog from '@mui/material/Dialog';
-import {blue} from '@mui/material/colors';
 import {IconButton, makeStyles} from "@material-ui/core";
 import {ReactComponent as MenuIcon} from "../../assets/logo/menuIcon.svg";
 import {NavLink} from "react-router-dom";
@@ -22,6 +15,9 @@ const useStyles = makeStyles(() => ({
 
             alignItems: "flex-start",
             justifyContent: "space-around"
+        },
+        reDialogContainer: {
+            alignItems:"flex-start!important" as any
         },
         links: {
             borderRight: "1px solid black",
@@ -43,17 +39,15 @@ const useStyles = makeStyles(() => ({
         }
     }),
 );
-const emails = ['username@gmail.com', 'user02@gmail.com'];
 
 export interface SimpleDialogProps {
     open: boolean;
-    selectedValue: string;
     onClose: () => void;
 }
 
 function SimpleDialog(props: SimpleDialogProps) {
     const classes = useStyles()
-    const {onClose, selectedValue, open} = props;
+    const {onClose, open} = props;
 
     const handleClose = () => {
         onClose();
@@ -64,7 +58,8 @@ function SimpleDialog(props: SimpleDialogProps) {
     };
 
     return (
-        <Dialog onClose={handleClose} open={open} classes={{paper: classes.dialog}}>
+        <Dialog onClose={handleClose} open={open}
+                classes={{paper: classes.dialog, container: classes.reDialogContainer}}>
 
             <NavLink
                 exact to="/"
@@ -90,35 +85,12 @@ function SimpleDialog(props: SimpleDialogProps) {
             >
                 <div className={classes.linkText}>Производство</div>
             </NavLink>
-
-            {/*       <DialogTitle>Set backup account</DialogTitle>
-            <List sx={{pt: 0}}>
-                {emails.map((email) => (
-                    <ListItem button onClick={() => handleListItemClick(email)} key={email}>
-                        <ListItemAvatar>
-                            <Avatar sx={{bgcolor: blue[100], color: blue[600]}}>
-                                x
-                            </Avatar>
-                        </ListItemAvatar>
-                        <ListItemText primary={email}/>
-                    </ListItem>
-                ))}
-                <ListItem autoFocus button onClick={() => handleListItemClick('addAccount')}>
-                    <ListItemAvatar>
-                        <Avatar>
-                            +
-                        </Avatar>
-                    </ListItemAvatar>
-                    <ListItemText primary="Add account"/>
-                </ListItem>
-            </List>*/}
         </Dialog>
     );
 }
 
 export default function SimpleDialogDemo() {
     const [open, setOpen] = React.useState(false);
-    const [selectedValue, setSelectedValue] = React.useState(emails[1]);
 
     const handleClickOpen = () => {
         setOpen(true);
@@ -134,7 +106,6 @@ export default function SimpleDialogDemo() {
                 <MenuIcon/>
             </IconButton>
             <SimpleDialog
-                selectedValue={selectedValue}
                 open={open}
                 onClose={handleClose}
             />

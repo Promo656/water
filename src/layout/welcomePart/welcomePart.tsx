@@ -6,6 +6,8 @@ import {ReactComponent as Logo} from "../../assets/logo/logo1.svg"
 import StyledButton from "../../components/button/styledButton";
 import useMediaQuery from "@mui/material/useMediaQuery";
 import classNames from "classnames";
+import {useHistory} from "react-router-dom";
+import {Resolution} from "../../const";
 
 const useStyles = makeStyles((theme) => ({
         welcomePart: {
@@ -51,9 +53,10 @@ const useStyles = makeStyles((theme) => ({
 );
 
 function WelcomePart() {
+    const history = useHistory()
     const classes = useStyles()
-    const minMatches = useMediaQuery('(min-width:376px)');
-    const maxMatches = useMediaQuery('(max-width:376px)');
+    const minMatches = useMediaQuery(Resolution.min);
+    const maxMatches = useMediaQuery(Resolution.max);
     const title = classNames(classes.title, {
         [classes.title_mobile]: maxMatches,
         [classes.title_web]: minMatches,
@@ -62,6 +65,9 @@ function WelcomePart() {
         [classes.infoWrap_mobile]: maxMatches,
         [classes.infoWrap_web]: minMatches,
     })
+    const changePath = () => {
+        history.push('/production')
+    }
     return (
         <>
             <img className={classes.image} src={minMatches ? mainImage : mainImage_mobile} alt=""/>
@@ -69,7 +75,7 @@ function WelcomePart() {
                 <div className={infoWrap}>
                     {minMatches && <Logo className={classes.logo}/>}
                     <div className={title}>Вода Севера - Идеальный Баланс</div>
-                    <StyledButton title="Подробнее" btnColor="#075AB4" matches={minMatches}/>
+                    <StyledButton title="Подробнее" btnColor="#075AB4" matches={minMatches} onClick={changePath}/>
                 </div>
             </div>
         </>
