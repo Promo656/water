@@ -28,6 +28,11 @@ const useStyles = makeStyles(() => ({
             position: "absolute",
             zIndex: -1
         },
+        form: {
+            width: "100%",
+            display: "flex",
+            justifyContent: "center"
+        },
         formArea: {
             borderRadius: 20,
             backgroundColor: "#075AB4",
@@ -38,7 +43,8 @@ const useStyles = makeStyles(() => ({
         },
         formArea_mobile: {
             width: "100%",
-            height: 581
+            height: 581,
+            padding: "0 20px"
         },
         formArea_web: {
             width: 852,
@@ -51,11 +57,38 @@ const useStyles = makeStyles(() => ({
         },
         formTitle_mobile: {
             fontSize: 14,
-            lineHeight: "20px"
+            lineHeight: "20px",
+            marginBottom: 10
         },
         formTitle_web: {
-            fontSize: 22
+            fontSize: 22,
+            marginBottom: 60
         },
+        contactsWrap: {
+            display: "flex"
+        },
+        contactsWrap_mobile: {
+            flexDirection: "column",
+            alignItems: "center",
+            width: "100%"
+        },
+        leftContactsWrap: {
+            width: "100%",
+            display: "flex",
+            flexDirection: "column",
+            alignItems: "center"
+        },
+        leftContactsWrap_mobile: {
+            // marginRight: "115px"
+        },
+        leftContactsWrap_web: {
+            marginRight: "115px"
+        },
+        messagesArea: {
+            display: 'flex',
+            flexDirection: "column",
+            alignItems: "flex-end"
+        }
     }),
 );
 
@@ -75,6 +108,12 @@ function MessagePart() {
         [classes.message_mobile]: maxMatches,
         [classes.message_web]: minMatches,
     })
+    const leftContactsWrap = classNames(classes.leftContactsWrap, {
+        [classes.leftContactsWrap_web]: minMatches,
+    })
+    const contactsWrap = classNames(classes.contactsWrap, {
+        [classes.contactsWrap_mobile]: maxMatches
+    })
 
     const handleSubmit = (event: FormEvent<HTMLFormElement>) => {
         event.preventDefault()
@@ -92,7 +131,8 @@ function MessagePart() {
                     maxMatches
                         ? <span className={formTitle}>
                     Нужна консультация?<br/>
-                            Воспользуйтесь формой обратной связи.
+                            Воспользуйтесь формой обратной <br/>
+                            связи.
                 </span>
                         : <span className={formTitle}>
                     Нужна консультация? Воспользуйтесь формой обратной связи. <br/>
@@ -100,12 +140,21 @@ function MessagePart() {
                 </span>
                 }
 
-                <form onSubmit={handleSubmit}>
+                <form onSubmit={handleSubmit} className={classes.form}>
+                    <div className={contactsWrap}>
+                        <div className={leftContactsWrap}>
+                            <StyledInputs title="ФИО"/>
+                            <StyledInputs title="Email"/>
+                            <StyledInputs title="Номер телефона"/>
+                        </div>
+                        <div className={classes.messagesArea}>
+                            {minMatches &&
+                            <StyledInputs title="Сообщение" multiline placeholder="Что Вас интересует?"/>}
+                            <StyledButton title="Отправить" btnColor="#DA442B" margin="40px 8px 0"/>
+                        </div>
+                    </div>
 
-                    <StyledInputs title="ФИО"/>
 
-                    <div></div>
-                    <StyledButton title="Отправить" btnColor="#DA442B"/>
                 </form>
             </div>
         </div>

@@ -4,6 +4,7 @@ import {ReactComponent as FooterIcon} from "../../assets/logo/footerIcon.svg";
 import useMediaQuery from "@mui/material/useMediaQuery";
 import classNames from "classnames";
 import {Resolution} from "../../const";
+import {NavLink} from 'react-router-dom';
 
 const useStyles = makeStyles((theme) => ({
         footer: {
@@ -40,7 +41,11 @@ const useStyles = makeStyles((theme) => ({
         text: {
             fontFamily: "Inglobal",
             fontSize: 14,
-            letterSpacing: 2
+            letterSpacing: 2,
+            textDecoration: "none",
+            '&:visited': {
+                color: "black",
+            }
         },
         linksArea: {
             display: "flex",
@@ -111,9 +116,9 @@ function Footer() {
                     {maxMatches && <div style={{border: "1px solid #075AB4", width: "100%"}}></div>}
                 </div>
                 <div className={linksArea}>
-                    <div className={classes.text} style={{marginBottom: 20}}>О компании</div>
-                    <div className={classes.text} style={{marginBottom: 20}}>Партнеры</div>
-                    <div className={classes.text} style={{marginBottom: 20}}>Производство</div>
+                    <NavLink to="/" className={classes.text} style={{marginBottom: 20}}>Главная</NavLink>
+                    <NavLink to="/about" className={classes.text} style={{marginBottom: 20}}>О компании</NavLink>
+                    <NavLink to="/production" className={classes.text} style={{marginBottom: 20}}>Производство</NavLink>
                     {maxMatches && <div style={{border: "1px solid #075AB4", width: "100%"}}></div>}
                 </div>
                 <Button

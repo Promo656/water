@@ -1,5 +1,5 @@
 import React from 'react';
-import {ReactComponent as Logo69} from "../../assets/logo/69Logo.svg";
+import {ReactComponent as Logo69} from "../../assets/logo/69logo.svg";
 import {ReactComponent as Parallel} from "../../assets/logo/paralel.svg";
 import {makeStyles} from "@material-ui/core";
 
