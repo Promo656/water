@@ -8,6 +8,7 @@ import Navbar from "./components/navbar/navbar";
 import useMediaQuery from '@mui/material/useMediaQuery';
 import SimpleDialogDemo from "./components/dialog/dialog";
 import {Resolution} from "./const";
+import NewCarousel from "./components/carousel/newCarousel";
 
 function App() {
     const matches = useMediaQuery(Resolution.min);
@@ -18,6 +19,7 @@ function App() {
                 <Route exact path="/" component={Main}/>
                 <Route exact path="/about" component={About}/>
                 <Route exact path="/production" component={Production}/>
+                {/*<Route exact path="/test" component={NewCarousel}/>*/}
             </Switch>
         </div>
 

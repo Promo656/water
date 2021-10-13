@@ -14,7 +14,8 @@ const useStyles = makeStyles((theme) => ({
             position: "relative",
             height: "100vh",
             backgroundSize: "contain",
-            backgroundRepeat: "no-repeat"
+            backgroundRepeat: "no-repeat",
+            marginBottom:120
         },
         image: {
             width: "100%",

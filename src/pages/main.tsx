@@ -10,7 +10,7 @@ function Main() {
     return (
         <>
             <WelcomePart/>
-              <CarouselPart/>
+            <CarouselPart/>
             <HarmfulPart/>
             <BuyPart/>
             <Footer/>

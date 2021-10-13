@@ -25,7 +25,7 @@ const slides = [
 
 
 const initialState = {
-    slideIndex: 2
+    slideIndex: 0
 };
 
 const slidesReducer = (state, event) => {
@@ -45,7 +45,7 @@ const slidesReducer = (state, event) => {
 };
 
 function Slide({slide, offset}) {
-    const active = offset === 2 ? true : null;
+    const active = offset === 1 ? true : null;
 
     return (
         <div
@@ -90,7 +90,7 @@ export function Slider() {
             <button onClick={() => dispatch({type: "PREV"})}><LeftArrow/></button>
 
             {[...slides].map((slide, i) => {
-                return <Slide slide={slide} offset={i} key={i}/>;
+                return <Slide slide={slide} offset={state.slideIndex} key={i}/>;
             })}
             <button onClick={() => dispatch({type: "NEXT"})}><RightArrow/></button>
         </div>
