@@ -8,6 +8,9 @@ import {ReactComponent as LeftArrow} from "../../assets/logo/leftArrow.svg";
 import {ReactComponent as RightArrow} from "../../assets/logo/rightArrow.svg";
 import {makeStyles} from "@material-ui/core";
 import {Button} from "@mui/material";
+import useMediaQuery from "@mui/material/useMediaQuery";
+import {Resolution} from "../../const";
+import classNames from "classnames";
 
 const useStyles = makeStyles((theme) => ({
     carousel: {
@@ -17,33 +20,82 @@ const useStyles = makeStyles((theme) => ({
         display: "flex",
         minHeight: 864,
         maxHeight: 864,
-        marginBottom: 100
+        marginBottom: 100,
+        overflow: "hidden",
+        justifyContent: "center"
+    },
+    carousel_mobile: {
+        // marginBottom: 100,
+        position: "relative",
+        width: "100%",
+        display: "flex",
+        minHeight: 864,
+        maxHeight: 864,
+        marginBottom: 100,
+        overflow: "hidden",
+        justifyContent: "center"
+    },
+    carousel_web: {
+        // marginBottom: 100,
+        position: "relative",
+        width: "100%",
+        display: "flex",
+        minHeight: 864,
+        maxHeight: 864,
+        marginBottom: 100,
+        overflow: "hidden",
+        justifyContent: "center"
     },
     wrap: {
         display: "flex",
         flexDirection: "column"
     },
     mainPhoto: {
+        margin: "0 40px 20px"
+    },
+    mainPhoto_mobile: {
+        width: 196,
+        height: 279,
+        margin: "0 40px 20px"
+    },
+    mainPhoto_web: {
         width: 530,
         height: 754,
         margin: "0 40px 20px"
     },
     otherPhoto: {
+        margin: "70px 0 20px"
+    },
+    otherPhoto_mobile: {
+        width: 145,
+        height: 207,
+        margin: "30px 0 20px"
+    },
+    otherPhoto_web: {
         width: 346,
         height: 493,
         margin: "70px 0 20px"
     },
     mainSubTitle: {
         fontFamily: "Inglobal",
+        textAlign: "center"
+    },
+    mainSubTitle_mobile: {
+        fontSize: 14,
+        lineHeight: "20px",
+    },
+    mainSubTitle_web: {
         fontSize: 18,
         lineHeight: "30px",
-        textAlign: "center"
     },
     otherSubTitle: {
         fontFamily: "Inglobal",
         fontSize: 14,
         lineHeight: "24px",
         textAlign: "center"
+    },
+    otherSubTitle_mobile: {
+        display: "none"
     },
     leftArrow: {
         cursor: "pointer",
@@ -54,6 +106,15 @@ const useStyles = makeStyles((theme) => ({
             opacity: .9
         }
     },
+    leftArrow_mobile: {
+        width: 45,
+        height: 16
+
+    },
+    leftArrow_web: {
+        width: 158,
+        height: 38
+    },
     rightArrow: {
         cursor: "pointer",
         position: "absolute!important" as any,
@@ -62,10 +123,19 @@ const useStyles = makeStyles((theme) => ({
         '&:hover': {
             opacity: .9
         }
-    }
+    },
+    rightArrow_mobile: {
+        width: 45,
+        height: 16
+    },
+    rightArrow_web: {
+        width: 158,
+        height: 38
+
+    },
 }));
 
-const photosArray = [
+const webPhotos = [
     {
         id: 0,
         subTitle: <div>
@@ -94,10 +164,66 @@ const photosArray = [
     }
 ]
 
+const mobilePhotos = [
+    {
+        id: 0,
+        subTitle: <div>
+            В процессе очищения все посторонние<br/>
+            примеси и грязь удаляются, а заморозка <br/>
+            и оттаивание дополнительно очищают воду.
+        </div>,
+        photo: leftLogo
+    },
+    {
+        id: 1,
+        subTitle: <div>
+            Добыча воды осуществляется из <br/>
+            скважины в экологически чистом районе <br/>
+            Крайнего Севера - идентична с талой <br/>
+            водой.
+        </div>,
+        photo: centerLogo
+    },
+    {
+        id: 2,
+        subTitle: <div>
+            Талая вода проходит двойную очистку - <br/>
+            испарение (дистилляцию).
+        </div>,
+        photo: rightLogo
+    }
+]
+
 
 function CarouselMui() {
     const classes = useStyles()
-    const [photos, setPhotos] = useState(photosArray)
+    const minMatches = useMediaQuery(Resolution.min);
+    const maxMatches = useMediaQuery(Resolution.max);
+    const mainPhoto = classNames(classes.mainPhoto, {
+        [classes.mainPhoto_mobile]: maxMatches,
+        [classes.mainPhoto_web]: minMatches,
+    })
+    const otherPhoto = classNames(classes.otherPhoto, {
+        [classes.otherPhoto_mobile]: maxMatches,
+        [classes.otherPhoto_web]: minMatches,
+    })
+    const otherSubTitle = classNames(classes.otherSubTitle, {
+        [classes.otherSubTitle_mobile]: maxMatches,
+    })
+    const mainSubTitle = classNames(classes.mainSubTitle, {
+        [classes.mainSubTitle_mobile]: maxMatches,
+        [classes.mainSubTitle_web]: minMatches,
+    })
+    const leftArrow = classNames(classes.leftArrow, {
+        [classes.leftArrow_mobile]: maxMatches,
+        [classes.leftArrow_web]: minMatches,
+    })
+    const rightArrow = classNames(classes.rightArrow, {
+        [classes.rightArrow_mobile]: maxMatches,
+        [classes.rightArrow_web]: minMatches,
+    })
+
+    const [photos, setPhotos] = useState(maxMatches ? webPhotos : mobilePhotos)
 
     const nextPhoto = () => {
         const newPhoto = photos.reduce((t, c, i) => {
@@ -148,69 +274,18 @@ function CarouselMui() {
                         <img
                             src={el.photo}
                             alt=""
-                            className={el.id === 1 ? classes.mainPhoto : classes.otherPhoto}
+                            className={el.id === 1 ? mainPhoto : otherPhoto}
                         />
-                        <div className={el.id === 1 ? classes.mainSubTitle : classes.otherSubTitle}>
+                        <div className={el.id === 1 ? mainSubTitle : otherSubTitle}>
                             {el.subTitle}
-                            {/* {
-                                index === 0
-                                && <div>
-                                    В процессе очищения все посторонние примеси <br/>
-                                    и грязь удаляются, а заморозка и оттаивание <br/>
-                                    дополнительно очищают воду.
-                                </div>
-                            }
-                            {
-                                index === 1
-                                && <>
-                                    Добыча воды осуществляется из скважины <br/>
-                                    в экологически чистом районе Крайнего Севера - <br/>
-                                    идентична с талой водой.
-                                </>
-                            }
-                            {
-                                index === 2
-                                && <>
-                                    Талая вода проходит двойную очистку - <br/>
-                                    испарение (дистилляцию).
-                                </>
-                            }*/}
                         </div>
                     </div>
                 ))
             }
 
+            <LeftArrow className={leftArrow} onClick={nextPhoto}/>
 
-            {/* <div className={classes.wrap}>
-                <img src={leftLogo} alt="" className={classes.otherPhoto}/>
-                <div className={classes.otherSubTitle}>
-                    В процессе очищения все посторонние примеси <br/>
-                    и грязь удаляются, а заморозка и оттаивание <br/>
-                    дополнительно очищают воду.
-                </div>
-            </div>
-
-            <div className={classes.wrap}>
-                <img src={centerLogo} alt="" className={classes.mainPhoto}/>
-                <div className={classes.mainSubTitle}>
-                    Добыча воды осуществляется из скважины <br/>
-                    в экологически чистом районе Крайнего Севера - <br/>
-                    идентична с талой водой.
-                </div>
-            </div>
-
-            <div className={classes.wrap}>
-                <img src={rightLogo} alt="" className={classes.otherPhoto}/>
-                <div className={classes.otherSubTitle}>
-                    Талая вода проходит двойную очистку - <br/>
-                    испарение (дистилляцию).
-                </div>
-            </div>*/}
-
-
-            <LeftArrow className={classes.leftArrow} onClick={prevPhoto}/>
-
-            <RightArrow className={classes.rightArrow} onClick={nextPhoto}/>
+            <RightArrow className={rightArrow} onClick={prevPhoto}/>
 
         </div>
     );

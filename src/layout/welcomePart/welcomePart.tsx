@@ -15,7 +15,12 @@ const useStyles = makeStyles((theme) => ({
             height: "100vh",
             backgroundSize: "contain",
             backgroundRepeat: "no-repeat",
-            marginBottom:120
+        },
+        welcomePart_mobile: {
+            marginBottom: 60
+        },
+        welcomePart_web: {
+            marginBottom: 120
         },
         image: {
             width: "100%",
@@ -58,6 +63,10 @@ function WelcomePart() {
     const classes = useStyles()
     const minMatches = useMediaQuery(Resolution.min);
     const maxMatches = useMediaQuery(Resolution.max);
+    const welcomePart = classNames(classes.welcomePart, {
+        [classes.welcomePart_mobile]: maxMatches,
+        [classes.welcomePart_web]: minMatches,
+    })
     const title = classNames(classes.title, {
         [classes.title_mobile]: maxMatches,
         [classes.title_web]: minMatches,
@@ -72,7 +81,7 @@ function WelcomePart() {
     return (
         <>
             <img className={classes.image} src={minMatches ? mainImage : mainImage_mobile} alt=""/>
-            <div className={classes.welcomePart}>
+            <div className={welcomePart}>
                 <div className={infoWrap}>
                     {minMatches && <Logo className={classes.logo}/>}
                     <div className={title}>Вода Севера - Идеальный Баланс</div>
