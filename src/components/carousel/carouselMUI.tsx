@@ -3,48 +3,29 @@ import React, {useState} from 'react';
 import leftLogo from "../../assets/photo/logo8.png"
 import centerLogo from "../../assets/photo/logo9.png"
 import rightLogo from "../../assets/photo/logo10.png"
-
-import {ReactComponent as LeftArrow} from "../../assets/logo/leftArrow.svg";
-import {ReactComponent as RightArrow} from "../../assets/logo/rightArrow.svg";
+import {ReactComponent as LeftArrow} from "../../assets/logo/leftArrowMobile.svg";
+import {ReactComponent as RightArrow} from "../../assets/logo/rightArrowMobile.svg";
 import {makeStyles} from "@material-ui/core";
-import {Button} from "@mui/material";
 import useMediaQuery from "@mui/material/useMediaQuery";
 import {Resolution} from "../../const";
 import classNames from "classnames";
 
 const useStyles = makeStyles((theme) => ({
     carousel: {
-        // marginBottom: 100,
         position: "relative",
         width: "100%",
         display: "flex",
-        minHeight: 864,
-        maxHeight: 864,
-        marginBottom: 100,
         overflow: "hidden",
         justifyContent: "center"
     },
     carousel_mobile: {
-        // marginBottom: 100,
-        position: "relative",
-        width: "100%",
-        display: "flex",
-        minHeight: 864,
-        maxHeight: 864,
-        marginBottom: 100,
-        overflow: "hidden",
-        justifyContent: "center"
+        minHeight: 450,
+        maxHeight: 450
     },
     carousel_web: {
-        // marginBottom: 100,
-        position: "relative",
-        width: "100%",
-        display: "flex",
-        minHeight: 864,
-        maxHeight: 864,
-        marginBottom: 100,
-        overflow: "hidden",
-        justifyContent: "center"
+        minHeight: 890,
+        maxHeight: 890,
+        marginBottom: 100
     },
     wrap: {
         display: "flex",
@@ -56,7 +37,7 @@ const useStyles = makeStyles((theme) => ({
     mainPhoto_mobile: {
         width: 196,
         height: 279,
-        margin: "0 40px 20px"
+        margin: "0 40px 56px"
     },
     mainPhoto_web: {
         width: 530,
@@ -100,38 +81,36 @@ const useStyles = makeStyles((theme) => ({
     leftArrow: {
         cursor: "pointer",
         position: "absolute!important" as any,
-        left: 0,
-        bottom: 170,
         '&:hover': {
             opacity: .9
         }
     },
     leftArrow_mobile: {
-        width: 45,
-        height: 16
-
+        left:108,
+        bottom: 135,
     },
     leftArrow_web: {
         width: 158,
-        height: 38
+        height: 38,
+        left: 0,
+        bottom: 170,
     },
     rightArrow: {
         cursor: "pointer",
         position: "absolute!important" as any,
-        right: 0,
-        bottom: 170,
         '&:hover': {
             opacity: .9
         }
     },
     rightArrow_mobile: {
-        width: 45,
-        height: 16
+        right: 108,
+        bottom: 135,
     },
     rightArrow_web: {
         width: 158,
-        height: 38
-
+        height: 38,
+        right: 0,
+        bottom: 170,
     },
 }));
 
@@ -222,6 +201,11 @@ function CarouselMui() {
         [classes.rightArrow_mobile]: maxMatches,
         [classes.rightArrow_web]: minMatches,
     })
+    const carousel = classNames(classes.carousel, {
+        [classes.carousel_mobile]: maxMatches,
+        [classes.carousel_web]: minMatches,
+    })
+
 
     const [photos, setPhotos] = useState(maxMatches ? webPhotos : mobilePhotos)
 
@@ -266,7 +250,7 @@ function CarouselMui() {
     }
 
     return (
-        <div className={classes.carousel}>
+        <div className={carousel}>
 
             {
                 photos.map((el, index) => (

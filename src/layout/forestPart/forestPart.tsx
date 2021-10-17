@@ -28,7 +28,8 @@ const useStyles = makeStyles((theme) => ({
             fontSize: 24
         },
         text_web: {
-            fontSize: 48
+            fontSize: 48,
+            display: "inline-block"
         },
         wrapText: {
             backgroundColor: "#075AB4",
@@ -43,12 +44,13 @@ const useStyles = makeStyles((theme) => ({
             justifyContent: "center",
             borderRadius: 4,
             fontSize: 18,
-            margin: "15px 25px 0 70px"
+            margin: "15px 25px 0 75px"
         },
         wrapText_web: {
             borderRadius: 14,
             fontSize: 48,
-            padding: "20px 40px"
+            padding: "20px 40px",
+            display: "inline-block"
         }
     }),
 );
@@ -70,9 +72,9 @@ function ForestPart() {
             <img className={classes.image} src={productionLogo} alt=""/>
             <div className={classes.production}>
                 <div style={{width: "100%", textAlign: "center"}}>
-                    <span className={text}>Можете спать спокойно</span>
-                    {minMatches && <span className={text}>&ensp;&mdash;&ensp;</span>}
-                    <span className={wrapText}>мы все доставим во время.</span>
+                    <div className={text}>Можете спать спокойно</div>
+                    {minMatches && <div className={text}>&ensp;&mdash;&ensp;</div>}
+                    <div className={wrapText}>мы все доставим во время.</div>
                 </div>
             </div>
         </>

@@ -20,6 +20,7 @@ const useStyles = makeStyles((theme) => ({
             borderRight: "1px solid black",
             textDecoration: "none",
             marginRight: 10,
+            color:"black",
             '&:active': {
                 color: "#DA442B",
             }

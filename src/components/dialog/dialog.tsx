@@ -17,12 +17,13 @@ const useStyles = makeStyles(() => ({
             justifyContent: "space-around"
         },
         reDialogContainer: {
-            alignItems:"flex-start!important" as any
+            alignItems: "flex-start!important" as any
         },
         links: {
             borderRight: "1px solid black",
             textDecoration: "none",
             width: "100%",
+            color: "black",
             '&:active': {
                 color: "#DA442B",
             }

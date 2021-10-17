@@ -43,6 +43,7 @@ const useStyles = makeStyles((theme) => ({
             fontSize: 14,
             letterSpacing: 2,
             textDecoration: "none",
+            color: "black",
             '&:visited': {
                 color: "black",
             }
@@ -110,8 +111,10 @@ function Footer() {
             <div className={footerWrap}>
                 {minMatches && <FooterIcon className={classes.footerIcon}/>}
                 <div className={infoArea}>
-                    <span className={classes.text} style={{marginBottom: 17}}>Email: 1@69paralel.ru</span>
-                    <span className={classes.text} style={{marginBottom: 17}}>Телефон: +7(8152)65-25-50</span>
+                    <a href="mailto:1@69paralel.ru" className={classes.text} style={{marginBottom: 17}}>Email:
+                        1@69paralel.ru</a>
+                    <a href="tel:+7(8152)65-25-50" className={classes.text} style={{marginBottom: 17}}>Телефон:
+                        +7(8152)65-25-50</a>
                     <span className={classes.text} style={{marginBottom: 20}}>Адрес: Мурманская область, <br/> Кольский район,поселок Пушной</span>
                     {maxMatches && <div style={{border: "1px solid #075AB4", width: "100%"}}></div>}
                 </div>

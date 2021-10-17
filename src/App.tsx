@@ -8,20 +8,22 @@ import Navbar from "./components/navbar/navbar";
 import useMediaQuery from '@mui/material/useMediaQuery';
 import SimpleDialogDemo from "./components/dialog/dialog";
 import {Resolution} from "./const";
-import NewCarousel from "./components/carousel/newCarousel";
+import ScrollToTop from "./components/scrollToTop/scrollToTop";
 
 function App() {
     const matches = useMediaQuery(Resolution.min);
     return (
-        <div>
-            {matches ? <Navbar/> : <SimpleDialogDemo/>}
-            <Switch>
-                <Route exact path="/" component={Main}/>
-                <Route exact path="/about" component={About}/>
-                <Route exact path="/production" component={Production}/>
-                {/*<Route exact path="/test" component={NewCarousel}/>*/}
-            </Switch>
-        </div>
+        <ScrollToTop>
+            <div>
+                {matches ? <Navbar/> : <SimpleDialogDemo/>}
+                <Switch>
+                    <Route exact path="/" component={Main}/>
+                    <Route exact path="/about" component={About}/>
+                    <Route exact path="/production" component={Production}/>
+                </Switch>
+            </div>
+        </ScrollToTop>
+
 
     );
 }
