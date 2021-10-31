@@ -9,6 +9,7 @@ import {makeStyles} from "@material-ui/core";
 import useMediaQuery from "@mui/material/useMediaQuery";
 import {Resolution} from "../../const";
 import classNames from "classnames";
+import {Fade} from "@mui/material";
 
 const useStyles = makeStyles((theme) => ({
     carousel: {
@@ -86,7 +87,7 @@ const useStyles = makeStyles((theme) => ({
         }
     },
     leftArrow_mobile: {
-        left:108,
+        left: 108,
         bottom: 135,
     },
     leftArrow_web: {
@@ -261,7 +262,7 @@ function CarouselMui() {
                             className={el.id === 1 ? mainPhoto : otherPhoto}
                         />
                         <div className={el.id === 1 ? mainSubTitle : otherSubTitle}>
-                            {el.subTitle}
+                            <Fade in={el.subTitle}>{el.subTitle}</Fade>
                         </div>
                     </div>
                 ))
